@@ -1,4 +1,8 @@
 ## 简介
+<!-- No VSCode logo for legal reason: https://github.com/simple-icons/simple-icons/issues/11236 -->
+![Version](https://img.shields.io/visual-studio-marketplace/v/quanquan-cho.word-translation?label=Version)
+![Installs](https://img.shields.io/visual-studio-marketplace/i/quanquan-cho.word-translation?label=Installs)
+![Downloads](https://img.shields.io/visual-studio-marketplace/d/quanquan-cho.word-translation?label=Downloads)
 
 Word Translate是一款纯粹的VSCode划词翻译插件，基于[Code Translate插件](https://marketplace.visualstudio.com/items?itemName=w88975.code-translate)修改，将原插件的**悬浮翻译**改为**鼠标右键翻译**，不被悬浮翻译窗干扰
 
