@@ -1,24 +1,19 @@
 
-const humps = require('./humps')
 module.exports = {
-  // 单词拆分
-  // 例: foor-bar 拆分为 [foo, bar]
+  // Extract English words before splitting identifier case boundaries.
+  // Code punctuation, whitespace and digits separate words instead of joining them.
   getWordArray: function (character) {
-    let formatChar = character
-    var capitalizes = formatChar.match(/[A-Z\s]{2,}/g)
-    if (capitalizes && capitalizes.length) {
-      capitalizes.map(item => {
-        formatChar = formatChar.replace(item, humps.pascalize(item.toLowerCase()))
-      })
+    const identifiers = character.match(/[A-Za-z]+/g) || []
+    const words = []
+    for (const identifier of identifiers) {
+      const parts = identifier
+        .replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2')
+        .replace(/([a-z])([A-Z])/g, '$1 $2')
+        .toLowerCase()
+        .split(' ')
+      words.push(...parts)
     }
-    if (!formatChar) {
-      return
-    }
-    // 判断是否全大写
-    if (/^[A-Z]+$/.test(character)) {
-      return [character.toLowerCase()]
-    }
-    return Array.from(new Set(humps.decamelize(humps.camelize(formatChar), { separator: '|' }).split('|')))
+    return Array.from(new Set(words))
   },
   cleanWord: function (character) {
     return character.replace(/"/g, '')

@@ -99,3 +99,30 @@ test('real local dictionary still translates camelCase identifiers', async () =>
   const result = s.editor.decorations[0].hoverMessage.value
   assert.match(result, /hello/); assert.match(result, /world/); assert.match(result, /世界/)
 })
+
+test('code selection looks up clean words and renders real dictionary results', async () => {
+  const words = []
+  const query = require(__dirname + '/../src/query.js')
+  const s = setup(word => {words.push(word); return query(word)})
+  s.editor.selection = s.selection('self._launcher_settings = load_launcher_settings()')
+  await s.translate()
+  assert.deepEqual(words, ['self', 'launcher', 'settings', 'load'])
+  const result = s.editor.decorations[0].hoverMessage.value
+  assert.match(result, /\[self\]/)
+  assert.match(result, /\[settings\]/)
+  assert.match(result, /设置/)
+  assert.match(result, /自己/)
+  assert.doesNotMatch(result, /本地词库暂无结果/)
+})
+
+test('punctuation-only selection clears old content without querying or showing an empty hover', async () => {
+  let queries = 0
+  const s = setup(async () => {queries++; return {w: '你好', p: ''}})
+  await s.translate()
+  s.calls.length = 0
+  s.editor.selection = s.selection(' = () 123 ')
+  await s.translate()
+  assert.equal(queries, 1)
+  assert.equal(s.editor.decorations.length, 0)
+  assert.ok(!s.calls.some(call => call[0] === 'editor.action.showHover'))
+})

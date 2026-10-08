@@ -67,10 +67,13 @@ function init(context) {
         const request = requestId
         await clearing
         const selectedText = editor.document.getText(selection)
+        const words = formatter.getWordArray(selectedText)
+        if (words.length === 0) {
+          return
+        }
         const originText = formatter.cleanWord(selectedText)
         const header = markdownHeader.replace('$word', originText)
         const hoverMessage = new vscode.MarkdownString(header)
-        const words = formatter.getWordArray(originText)
         for (const i in words) {
           let word = words[i]
           let ret = await DICTQuery(word)

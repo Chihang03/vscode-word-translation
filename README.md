@@ -10,6 +10,16 @@
 
 快捷键只在代码编辑器获得焦点且有文字选区时生效。Windows/Linux 的 Ctrl+S、Mac 的 Command+S 继续保存文件。按 Esc、改变选区、编辑文本或切换编辑器会清理翻译内容。要求 VS Code 1.73.0 或更新版本。
 
+## 代码选词
+
+选区可以包含成员访问、赋值和函数调用等代码符号。例如：
+
+```python
+self._launcher_settings = load_launcher_settings()
+```
+
+会提取 `self`、`launcher`、`settings`、`load`，按第一次出现的顺序查词，重复单词只显示一次。`.`、`=`、括号、下划线、空白和数字等都作为分隔符，避免出现 `self.`、`settings=`、`settings()` 这样的查询。继续支持驼峰命名，`HTTPServer` 会拆成 `http`、`server`。只选中符号或数字时不显示空翻译框。
+
 ## 快捷键设置
 
 可在 VS Code“键盘快捷方式”中搜索 `word-translation-shortcuts.translate` 并修改。其他扩展或 Linux 桌面环境全局快捷键可能占用 Alt+Q；系统占用时还需调整桌面环境绑定。
@@ -24,8 +34,8 @@
 
 - 当前商店版源码：[Chihang03/vscode-word-translation 的 marketplace 分支](https://github.com/Chihang03/vscode-word-translation/tree/marketplace)。
 - 上游作者：liqwang、w88975；原项目版权声明见 [LICENSE](LICENSE)。
-- 翻译数据和单词拆分逻辑沿用上游项目；本 fork 增加主动翻译快捷键和翻译结果生命周期处理。
+- 翻译数据沿用上游项目；本 fork 改进代码选词，增加主动翻译快捷键和翻译结果生命周期处理。
 
 ## 开发
 
-运行 `npm run test:unit`（Node.js 18+，无需额外依赖）。测试覆盖翻译结果清理及异步查询处理，不能替代实际桌面交互验证。
+运行 `npm run test:unit`（Node.js 18+，无需额外依赖）。测试覆盖代码选词、真实离线词库查询、翻译结果清理及异步查询处理，不能替代实际桌面交互验证。

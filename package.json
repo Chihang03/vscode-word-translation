@@ -8,7 +8,7 @@
     "translation",
     "word translation"
   ],
-  "version": "0.1.6",
+  "version": "0.1.7",
   "publisher": "chihang03",
   "author": {
     "name": "Kieran Dai"
@@ -76,7 +76,7 @@
     "build:web": "webpack",
     "test:web": "npx vscode-test-web --browserType=chromium --extensionDevelopmentPath=. ./dist/web/extension.js",
     "test": "node ./test/runTest.js",
-    "test:unit": "node --test test/hover-regression.test.cjs"
+    "test:unit": "node --test test/*.test.cjs"
   },
   "devDependencies": {
     "@types/glob": "^7.1.1",
