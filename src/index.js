@@ -35,7 +35,7 @@ function init(context) {
       resultEditor.setDecorations(decorationType, [])
       resultEditor = undefined
     }
-    return vscode.commands.executeCommand('setContext', 'wordTranslation.resultVisible', false)
+    return vscode.commands.executeCommand('setContext', 'wordTranslationShortcuts.resultVisible', false)
   }
   context.subscriptions.push(
     decorationType,
@@ -50,11 +50,11 @@ function init(context) {
         clearResult()
       }
     }),
-    vscode.commands.registerCommand('word-translation.dismiss', async () => {
+    vscode.commands.registerCommand('word-translation-shortcuts.dismiss', async () => {
       await clearResult()
       await vscode.commands.executeCommand('editor.action.hideHover')
     }),
-    vscode.commands.registerCommand('word-translation.translate',
+    vscode.commands.registerCommand('word-translation-shortcuts.translate',
       async function(){
         //1.generate tranlation `hoverMessage`
         const editor = vscode.window.activeTextEditor
@@ -100,7 +100,7 @@ function init(context) {
           if (request !== requestId) {
             return
           }
-          await vscode.commands.executeCommand('setContext', 'wordTranslation.resultVisible', true)
+          await vscode.commands.executeCommand('setContext', 'wordTranslationShortcuts.resultVisible', true)
           if (request !== requestId) {
             return
           }

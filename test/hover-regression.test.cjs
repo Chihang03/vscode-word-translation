@@ -33,7 +33,7 @@ function setup(query = async () => ({w: '你好', p: 'hello'}), execute) {
   }})
   const context = {subscriptions: []}
   module.exports.init(context)
-  return {editor, vscode, calls, events, selection, context, translate: commands.get('word-translation.translate'), dismiss: commands.get('word-translation.dismiss')}
+  return {editor, vscode, calls, events, selection, context, translate: commands.get('word-translation-shortcuts.translate'), dismiss: commands.get('word-translation-shortcuts.dismiss')}
 }
 test('explicit translation focuses hover and retains content until dismissal', async () => {
   const showing = deferred()

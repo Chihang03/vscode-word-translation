@@ -1,34 +1,13 @@
-## 0.1.5
-
-- Windows/Linux 的 Translate 快捷键简化为一次按下 Alt+Q；不占用 Ctrl+S 保存。
-- macOS 保留 Control+S；所有平台仍只在编辑器有文字选区时触发。
-- 文档补充用户旧绑定及 Linux 桌面环境全局快捷键冲突处理说明。
-
-## 0.1.4
-
-- macOS 的 Translate 快捷键改为 Control+S，仍仅在编辑器有文字选区时生效。
-- 不再占用 macOS 的 Command+K 前缀；不影响 Command+S 保存。
-- Windows/Linux 绑定保持原样，避免占用其 Ctrl+S 保存快捷键。
-
-## 0.1.3
-
-- macOS 的 Translate 默认快捷键改为单次 Cmd+K；仅在编辑器有选区时生效。
-- Windows/Linux 绑定沿用 0.1.2。
-- 明确有选区时会占用 Cmd+K 前缀，影响原有两段式快捷键。
-
-## 0.1.2
-
-- 增加 Translate 快捷键：macOS 为 Cmd+K 后 Cmd+Shift+T，Windows/Linux 为 Ctrl+K 后 Ctrl+Shift+T。
-- 快捷键仅在编辑器有选区时触发，保留右键翻译入口。
-- 明确原生悬浮窗口仍受鼠标关闭规则影响，快捷键用于绕过长右键菜单。
-
-## 0.1.1
-
-- 右键翻译请求立即聚焦悬浮窗口，延后翻译内容清理；原生悬浮窗口仍可能因鼠标移动关闭。
-- 等待显示命令完成，避免翻译内容被提前清除。
-- Esc 清理翻译；防止异步查询显示已经过时的选区结果。
-- 无活动编辑器或无选区时安全退出，并释放装饰对象。
-
 # Change Log
 
-See https://github.com/QuanQuan-CHO/vscode-word-translation/releases
+## 0.1.6
+
+- 准备独立 Marketplace 发布身份及预览版本。
+- 使用独立命令 ID 和结果状态，避免与原插件命令撞名。
+- Windows/Linux 使用 Alt+Q；macOS 使用 Control+S，仅在编辑器有选区时触发。
+- 沿用已有的翻译结果生命周期、过时请求处理和离线词库。
+- 保留原生浮窗仍可能因鼠标移动关闭的已知限制。
+
+## 上游与 fork 历史
+
+此前 fork 版本及来源详见 GitHub 仓库历史；原作者为 liqwang、w88975。

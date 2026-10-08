@@ -1,6 +1,6 @@
 {
-  "name": "word-translation",
-  "displayName": "Word Translation",
+  "name": "word-translation-shortcuts",
+  "displayName": "Word Translation Shortcuts",
   "description": "一款纯粹的VSCode划词翻译插件",
   "keywords": [
     "翻译",
@@ -8,12 +8,10 @@
     "translation",
     "word translation"
   ],
-  "version": "0.1.5",
-  "publisher": "liqwang",
+  "version": "0.1.6",
+  "publisher": "chihang03",
   "author": {
-    "email": "12011619@mail.sustech.edu.cn",
-    "name": "liqwang",
-    "url": "https://github.com/liqwang"
+    "name": "Kieran Dai"
   },
   "repository": "https://github.com/Chihang03/vscode-word-translation",
   "bugs": {
@@ -34,40 +32,40 @@
   "contributes": {
     "commands": [
       {
-        "command": "word-translation.translate",
+        "command": "word-translation-shortcuts.translate",
         "title": "Translate"
       },
       {
-        "command": "word-translation.dismiss",
+        "command": "word-translation-shortcuts.dismiss",
         "title": "Dismiss Translation"
       }
     ],
     "menus": {
       "editor/context": [
         {
-          "command": "word-translation.translate",
+          "command": "word-translation-shortcuts.translate",
           "when": "editorHasSelection",
           "group": "navigation"
         }
       ],
       "commandPalette": [
         {
-          "command": "word-translation.dismiss",
+          "command": "word-translation-shortcuts.dismiss",
           "when": "false"
         }
       ]
     },
     "keybindings": [
       {
-        "command": "word-translation.translate",
+        "command": "word-translation-shortcuts.translate",
         "key": "alt+q",
         "mac": "ctrl+s",
         "when": "editorTextFocus && editorHasSelection"
       },
       {
-        "command": "word-translation.dismiss",
+        "command": "word-translation-shortcuts.dismiss",
         "key": "escape",
-        "when": "hoverFocused && wordTranslation.resultVisible"
+        "when": "hoverFocused && wordTranslationShortcuts.resultVisible"
       }
     ]
   },
@@ -94,5 +92,7 @@
     "webpack": "^5.60.0",
     "webpack-cli": "^4.9.1"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "homepage": "https://github.com/Chihang03/vscode-word-translation",
+  "preview": true
 }
