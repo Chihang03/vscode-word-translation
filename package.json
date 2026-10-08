@@ -8,32 +8,38 @@
     "translation",
     "word translation"
   ],
-  "version": "0.1.0",
+  "version": "0.1.4",
   "publisher": "liqwang",
   "author": {
     "email": "12011619@mail.sustech.edu.cn",
     "name": "liqwang",
     "url": "https://github.com/liqwang"
   },
-  "repository": "https://github.com/liqwang/vscode-word-translation",
+  "repository": "https://github.com/Chihang03/vscode-word-translation",
   "bugs": {
-    "url": "https://github.com/liqwang/vscode-word-translation/issues"
+    "url": "https://github.com/Chihang03/vscode-word-translation/issues"
   },
-  "license": "MIT", 
+  "license": "MIT",
   "icon": "icon.png",
   "engines": {
-    "vscode": "^1.31.1"
+    "vscode": "^1.73.0"
   },
   "categories": [
     "Other"
   ],
-  "activationEvents": ["onStartupFinished"],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./extension.js",
   "contributes": {
     "commands": [
       {
         "command": "word-translation.translate",
         "title": "Translate"
+      },
+      {
+        "command": "word-translation.dismiss",
+        "title": "Dismiss Translation"
       }
     ],
     "menus": {
@@ -43,8 +49,27 @@
           "when": "editorHasSelection",
           "group": "navigation"
         }
+      ],
+      "commandPalette": [
+        {
+          "command": "word-translation.dismiss",
+          "when": "false"
+        }
       ]
-    }
+    },
+    "keybindings": [
+      {
+        "command": "word-translation.translate",
+        "key": "ctrl+k ctrl+shift+t",
+        "mac": "ctrl+s",
+        "when": "editorTextFocus && editorHasSelection"
+      },
+      {
+        "command": "word-translation.dismiss",
+        "key": "escape",
+        "when": "hoverFocused && wordTranslation.resultVisible"
+      }
+    ]
   },
   "scripts": {
     "lint": "eslint .",
@@ -52,7 +77,8 @@
     "publish": "vsce package",
     "build:web": "webpack",
     "test:web": "npx vscode-test-web --browserType=chromium --extensionDevelopmentPath=. ./dist/web/extension.js",
-    "test": "node ./test/runTest.js"
+    "test": "node ./test/runTest.js",
+    "test:unit": "node --test test/hover-regression.test.cjs"
   },
   "devDependencies": {
     "@types/glob": "^7.1.1",

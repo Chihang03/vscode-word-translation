@@ -27,12 +27,46 @@ function init(context) {
     backgroundColor: new vscode.ThemeColor('editor.background'),
     rangeBehavior: vscode.DecorationRangeBehavior.ClosedClosed
   });
+  let resultEditor
+  let requestId = 0
+  const clearResult = () => {
+    requestId += 1
+    if (resultEditor) {
+      resultEditor.setDecorations(decorationType, [])
+      resultEditor = undefined
+    }
+    return vscode.commands.executeCommand('setContext', 'wordTranslation.resultVisible', false)
+  }
   context.subscriptions.push(
+    decorationType,
+    vscode.window.onDidChangeTextEditorSelection(event => {
+      if (event.textEditor === vscode.window.activeTextEditor) {
+        clearResult()
+      }
+    }),
+    vscode.window.onDidChangeActiveTextEditor(() => clearResult()),
+    vscode.workspace.onDidChangeTextDocument(event => {
+      if (vscode.window.activeTextEditor && event.document === vscode.window.activeTextEditor.document) {
+        clearResult()
+      }
+    }),
+    vscode.commands.registerCommand('word-translation.dismiss', async () => {
+      await clearResult()
+      await vscode.commands.executeCommand('editor.action.hideHover')
+    }),
     vscode.commands.registerCommand('word-translation.translate',
       async function(){
         //1.generate tranlation `hoverMessage`
         const editor = vscode.window.activeTextEditor
-        const selectedText = editor.document.getText(editor.selection)
+        if (!editor || editor.selection.isEmpty) {
+          return
+        }
+        const selection = editor.selection
+        const version = editor.document.version
+        const clearing = clearResult()
+        const request = requestId
+        await clearing
+        const selectedText = editor.document.getText(selection)
         const originText = formatter.cleanWord(selectedText)
         const header = markdownHeader.replace('$word', originText)
         const hoverMessage = new vscode.MarkdownString(header)
@@ -48,13 +82,36 @@ function init(context) {
         }
         hoverMessage.appendMarkdown(markdownFooter)
         hoverMessage.isTrusted = true
+        // Discard a result if its selection, document or active editor changed while querying.
+        if (request !== requestId || vscode.window.activeTextEditor !== editor ||
+          editor.document.version !== version || !editor.selection.isEqual(selection) ||
+          !editor.selection.active.isEqual(selection.active)) {
+          return
+        }
 
         //2.set `hoverMessage` decoration to editor
-        const range = new vscode.Range(editor.selection.start, editor.selection.end)
+        const range = new vscode.Range(selection.start, selection.end)
         const decorationOptions = [{range, hoverMessage}]
         editor.setDecorations(decorationType, decorationOptions)
-        vscode.commands.executeCommand('editor.action.showHover') //display the translation decoration
-        editor.setDecorations(decorationType, []) //clear the translation decoration after display
+        resultEditor = editor
+        try {
+          // Replace an existing hover instead of focusing stale content.
+          await vscode.commands.executeCommand('editor.action.hideHover')
+          if (request !== requestId) {
+            return
+          }
+          await vscode.commands.executeCommand('setContext', 'wordTranslation.resultVisible', true)
+          if (request !== requestId) {
+            return
+          }
+          // Request focus; native VS Code hover dismissal rules still apply.
+          await vscode.commands.executeCommand('editor.action.showHover', { focus: true })
+        } catch (error) {
+          if (request === requestId) {
+            await clearResult()
+          }
+          throw error
+        }
       }
     )
   )
