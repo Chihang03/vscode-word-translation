@@ -1,6 +1,6 @@
 # Word Translation：Chihang03 修改版
 
-本仓库 fork 自 [liqwang/vscode-word-translation](https://github.com/liqwang/vscode-word-translation)，保留原项目代码、作者信息和 MIT 许可证。当前版本增加 Mac 的 Control+S 翻译快捷键，并调整翻译结果的清理时序及异步查询处理。
+本仓库 fork 自 [liqwang/vscode-word-translation](https://github.com/liqwang/vscode-word-translation)，保留原项目代码、作者信息和 MIT 许可证。当前版本使用 Windows/Linux 的 Alt+Q、Mac 的 Control+S 翻译快捷键，并调整翻译结果的清理时序及异步查询处理。
 
 **已知限制：翻译仍使用 VS Code 原生悬浮窗口，鼠标移动仍可能导致窗口消失。此版本没有实现“仅点击翻译框外部才关闭”。**
 
@@ -8,9 +8,9 @@
 
 从本仓库 [Releases](https://github.com/Chihang03/vscode-word-translation/releases) 下载 `.vsix`。在 VS Code 扩展视图右上角“…”中选择“从 VSIX 安装…”，安装后按提示重新加载窗口。
 
-Mac：选中文字后按 **Control+S（⌃S）**，不是 Command+S。Command+S 继续保存文件。Windows/Linux：Ctrl+K 后 Ctrl+Shift+T。快捷键仅在代码编辑器有文字选区时生效。
+Mac：选中文字后按 **Control+S（⌃S）**，不是 Command+S。Command+S 继续保存文件。Windows/Linux：直接按 **Alt+Q**。快捷键仅在代码编辑器有文字选区时生效。
 
-如果此前手动给 Translate 绑定过 Command+K，请把用户快捷键中 `word-translation.translate` 的 `key` 改成 `ctrl+s`，避免用户规则保留旧按键。
+如果此前手动给 Translate 设置过快捷键，请修改用户快捷键中 `word-translation.translate` 的条目：Mac 使用 `ctrl+s`，Windows/Linux 使用 `alt+q`，避免用户规则保留旧按键。
 
 GitHub Release 提供的是**本地兼容升级包**，扩展 ID 使用 `quanquan-cho.word-translation`，用于替换已有的同款 Marketplace 插件；它由此 fork 构建，并非原发布者的官方更新。源码中的原 `publisher`、`author` 字段保留作为项目来源信息。此仓库的自动工作流只打包并发布 GitHub 附件，不发布到 VS Code Marketplace，也不需要 Marketplace Token。
 
@@ -82,12 +82,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-## 翻译快捷键（0.1.4）
+## 翻译快捷键（0.1.5）
 
 选中要翻译的文字，在编辑器中按以下快捷键，直接执行 Translate：
 
 - macOS：直接按 `Control+S`（`⌃S`，不是 `Command+S`）。
-- Windows / Linux：先按 `Ctrl+K`，松开后按 `Ctrl+Shift+T`（沿用 0.1.2）。
+- Windows / Linux：直接按 `Alt+Q`（一次同时按下，Q 表示 Query）。
 
 快捷键仅在编辑器有文字选区时触发，右键 Translate 仍可使用。可以在 VS Code 的“键盘快捷方式”中搜索 `word-translation.translate` 并修改。
 
@@ -95,7 +95,11 @@ SOFTWARE.
 
 `Control+S` 只在代码编辑器有选区时执行翻译。Mac 的保存文件快捷键 `Command+S` 不受影响；本版不再使用 `Command+K`，不占用原有的两段式快捷键前缀。其他扩展或用户自定义快捷键仍可能占用 Control+S，可在“键盘快捷方式”中检查。
 
-如果之前手动在用户 `keybindings.json` 中为 Translate 配置了其他按键，请将原条目的 `key` 改成 `ctrl+s`，避免旧绑定继续生效。Windows/Linux 沿用原有绑定，避免占用这些系统的 Ctrl+S 保存快捷键。
+如果之前手动在用户 `keybindings.json` 中为 Translate 配置了其他按键，请将原条目的 `key` 改成当前平台的快捷键，避免旧绑定继续生效。Windows/Linux 使用 Alt+Q，不占用 Ctrl+S 保存快捷键。
+
+### Windows/Linux 的快捷键范围
+
+Alt+Q 仅在代码编辑器获得焦点且有文字选区时触发翻译。在终端、搜索框或无选区时，这条翻译绑定不生效。若被其他扩展或 Linux 桌面环境的全局快捷键占用，请在 VS Code“键盘快捷方式”中重新绑定 Translate；系统级占用还需在桌面环境快捷键设置中调整。实体 Windows/Linux 按键触发和桌面环境冲突尚未验证。
 
 ### 悬浮窗口的行为边界
 

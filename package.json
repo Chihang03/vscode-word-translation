@@ -8,7 +8,7 @@
     "translation",
     "word translation"
   ],
-  "version": "0.1.4",
+  "version": "0.1.5",
   "publisher": "liqwang",
   "author": {
     "email": "12011619@mail.sustech.edu.cn",
@@ -60,7 +60,7 @@
     "keybindings": [
       {
         "command": "word-translation.translate",
-        "key": "ctrl+k ctrl+shift+t",
+        "key": "alt+q",
         "mac": "ctrl+s",
         "when": "editorTextFocus && editorHasSelection"
       },

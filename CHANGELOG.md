@@ -1,3 +1,9 @@
+## 0.1.5
+
+- Windows/Linux 的 Translate 快捷键简化为一次按下 Alt+Q；不占用 Ctrl+S 保存。
+- macOS 保留 Control+S；所有平台仍只在编辑器有文字选区时触发。
+- 文档补充用户旧绑定及 Linux 桌面环境全局快捷键冲突处理说明。
+
 ## 0.1.4
 
 - macOS 的 Translate 快捷键改为 Control+S，仍仅在编辑器有文字选区时生效。
