@@ -33,7 +33,7 @@ self._launcher_settings = load_launcher_settings()
 
 可以从本仓库 [Releases](https://github.com/Chihang03/vscode-word-translation/releases) 下载独立版本的 VSIX，在 VS Code 扩展视图“…”中选择“从 VSIX 安装…”。若同时启用同类翻译扩展，可能出现重复菜单或快捷键冲突，可按需要禁用其中一个。
 
-**商店状态：** Microsoft 的[公开移除记录](https://github.com/microsoft/vsmarketplace/blob/main/RemovedPackages.md)将本扩展列为 2026-10-09 移除，分类为 Impersonation。0.1.8 是品牌与来源说明整改版本，不表示商店条目已经恢复或微软已认可整改。能否恢复原条目，需由 Marketplace 团队复核。
+**商店状态：** Microsoft 的[公开移除记录](https://github.com/microsoft/vsmarketplace/blob/main/RemovedPackages.md)将本扩展列为 2026-10-09 移除，分类为 Impersonation。0.1.8 起是品牌与来源说明整改版本，不表示商店条目已经恢复或微软已认可整改。能否恢复原条目，需由 Marketplace 团队复核。
 
 ## 快捷键与当前限制
 

@@ -8,7 +8,7 @@
     "translation",
     "code lexicon"
   ],
-  "version": "0.1.8",
+  "version": "0.1.9",
   "publisher": "chihang03",
   "author": {
     "name": "Kieran Dai"
@@ -37,13 +37,11 @@
     "commands": [
       {
         "command": "word-translation-shortcuts.translate",
-        "title": "翻译所选单词",
-        "category": "Kieran Code Lexicon"
+        "title": "Kieran Code Lexicon：翻译所选单词"
       },
       {
         "command": "word-translation-shortcuts.dismiss",
-        "title": "关闭翻译结果",
-        "category": "Kieran Code Lexicon"
+        "title": "Kieran Code Lexicon：关闭翻译结果"
       }
     ],
     "menus": {

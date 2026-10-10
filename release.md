@@ -1,9 +1,9 @@
-## Kieran Code Lexicon 0.1.8（Preview / community fork）
+## Kieran Code Lexicon 0.1.9（Preview / community fork）
 
 维护者与发布者：Kieran Dai（chihang03）。独立扩展 ID：chihang03.word-translation-shortcuts。
 
 - 产品更名为 Kieran Code Lexicon（代码词典），替换为独立绘制的图标。
-- 简介、命令分类、产品说明和发布标题统一产品身份，明确社区 fork 与上游的关系。
+- 简介、命令标题、产品说明和发布标题统一产品身份，明确社区 fork 与上游的关系。右键菜单与命令面板均直接显示 Kieran Code Lexicon。
 - 移除继承的赞助配置与旧展示截图，本地打包不再覆盖发布者身份。
 - 保留上游来源、MIT 许可证和原作者版权声明。
 - 保留代码拆词、离线查词、Windows/Linux Alt+Q、Mac Control+S；原有命令 ID 和扩展 ID 不变。
