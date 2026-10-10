@@ -9,10 +9,8 @@ ROOT = Path(__file__).resolve().parents[1]
 NS = 'http://schemas.microsoft.com/developer/vsx-schema/2011'
 ET.register_namespace('', NS)
 
-def build(output, publisher=None):
+def build(output):
     package = json.loads((ROOT / 'package.json').read_text(encoding='utf-8'))
-    if publisher:
-        package['publisher'] = publisher
     def node(parent, name, attrs=None, text=None):
         element = ET.SubElement(parent, '{' + NS + '}' + name, attrs or {})
         element.text = text
@@ -41,7 +39,7 @@ def build(output, publisher=None):
         archive.writestr('extension.vsixmanifest', ET.tostring(manifest, encoding='utf-8', xml_declaration=True))
         archive.writestr('[Content_Types].xml', ET.tostring(types, encoding='utf-8', xml_declaration=True))
         archive.writestr('extension/package.json', json.dumps(package, ensure_ascii=False, indent=2) + '\n')
-        for name in ['extension.js', 'README.md', 'CHANGELOG.md', 'LICENSE', 'icon.png']:
+        for name in ['extension.js', 'README.md', 'CHANGELOG.md', 'LICENSE', 'THIRD_PARTY_NOTICES.md', 'icon.png']:
             archive.write(ROOT / name, 'extension/' + name)
         for path in sorted((ROOT / 'src').rglob('*')):
             if path.is_file():
@@ -57,6 +55,5 @@ def build(output, publisher=None):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True)
-    parser.add_argument('--publisher', help='Override package identity for a documented local compatibility build')
     args = parser.parse_args()
-    build(args.output, args.publisher)
+    build(args.output)

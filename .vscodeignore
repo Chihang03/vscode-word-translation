@@ -4,6 +4,7 @@
 test/**
 scripts/**
 assets/**
+docs/**
 .gitignore
 vsc-extension-quickstart.md
 release.md

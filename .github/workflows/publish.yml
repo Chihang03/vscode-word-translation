@@ -1,4 +1,4 @@
-name: Package Marketplace VSIX for GitHub
+name: Package Kieran Code Lexicon for GitHub
 
 on:
   workflow_dispatch:
@@ -24,19 +24,19 @@ jobs:
         run: |
           node -e 'const expected = "v" + require("./package.json").version; if (process.env.GITHUB_REF_NAME !== expected) { throw new Error("Tag must match package version: " + expected) }'
       - name: Package Marketplace VSIX
-        run: npx --yes @vscode/vsce package --no-dependencies --githubBranch marketplace --out word-translation-shortcuts.vsix
+        run: npx --yes @vscode/vsce package --no-dependencies --githubBranch marketplace --out kieran-code-lexicon.vsix
       - name: Upload downloadable artifact
         uses: actions/upload-artifact@v4
         with:
-          name: word-translation-shortcuts
-          path: word-translation-shortcuts.vsix
+          name: kieran-code-lexicon
+          path: kieran-code-lexicon.vsix
       - name: Publish GitHub release attachment
         if: startsWith(github.ref, 'refs/tags/')
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           if gh release view "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
-            gh release upload "$GITHUB_REF_NAME" word-translation-shortcuts.vsix --repo "$GITHUB_REPOSITORY" --clobber
+            gh release upload "$GITHUB_REF_NAME" kieran-code-lexicon.vsix --repo "$GITHUB_REPOSITORY" --clobber
           else
-            gh release create "$GITHUB_REF_NAME" word-translation-shortcuts.vsix --repo "$GITHUB_REPOSITORY" --title "Word Translation $GITHUB_REF_NAME (fork)" --notes-file release.md
+            gh release create "$GITHUB_REF_NAME" kieran-code-lexicon.vsix --repo "$GITHUB_REPOSITORY" --title "Kieran Code Lexicon $GITHUB_REF_NAME (community fork)" --notes-file release.md
           fi

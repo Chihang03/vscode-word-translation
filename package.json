@@ -1,14 +1,14 @@
 {
   "name": "word-translation-shortcuts",
-  "displayName": "Word Translation Shortcuts",
-  "description": "一款纯粹的VSCode划词翻译插件",
+  "displayName": "Kieran Code Lexicon（代码词典）",
+  "description": "Kieran Dai 独立维护的社区 fork：在代码中选中英文单词，快捷查询本地中英词库，支持组合标识符拆词。",
   "keywords": [
     "翻译",
     "划词翻译",
     "translation",
-    "word translation"
+    "code lexicon"
   ],
-  "version": "0.1.7",
+  "version": "0.1.8",
   "publisher": "chihang03",
   "author": {
     "name": "Kieran Dai"
@@ -19,6 +19,10 @@
   },
   "license": "MIT",
   "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#0b141d",
+    "theme": "dark"
+  },
   "engines": {
     "vscode": "^1.73.0"
   },
@@ -33,11 +37,13 @@
     "commands": [
       {
         "command": "word-translation-shortcuts.translate",
-        "title": "Translate"
+        "title": "翻译所选单词",
+        "category": "Kieran Code Lexicon"
       },
       {
         "command": "word-translation-shortcuts.dismiss",
-        "title": "Dismiss Translation"
+        "title": "关闭翻译结果",
+        "category": "Kieran Code Lexicon"
       }
     ],
     "menus": {
@@ -93,6 +99,6 @@
     "webpack-cli": "^4.9.1"
   },
   "dependencies": {},
-  "homepage": "https://github.com/Chihang03/vscode-word-translation",
+  "homepage": "https://github.com/Chihang03/vscode-word-translation/tree/marketplace",
   "preview": true
 }

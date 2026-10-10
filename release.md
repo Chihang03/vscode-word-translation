@@ -1,13 +1,17 @@
-## Word Translation Shortcuts 0.1.7（Preview）
+## Kieran Code Lexicon 0.1.8（Preview / community fork）
 
-发布者：Kieran Dai（chihang03）。扩展 ID：chihang03.word-translation-shortcuts。
+维护者与发布者：Kieran Dai（chihang03）。独立扩展 ID：chihang03.word-translation-shortcuts。
 
-- 修复 `self.`、`settings=`、`settings()` 等代码符号导致查词失败的问题。
-- `self._launcher_settings = load_launcher_settings()` 提取为 `self`、`launcher`、`settings`、`load`，重复单词只显示一次。
-- 支持驼峰、下划线、连字符与 HTTPServer 等缩写拆分；符号和数字选区不显示空翻译框。
-- 保留 Windows/Linux Alt+Q、Mac Control+S、右键 Translate 及翻译结果生命周期。
-- 保留 MIT 许可证和上游作者来源说明。
+- 产品更名为 Kieran Code Lexicon（代码词典），替换为独立绘制的图标。
+- 简介、命令分类、产品说明和发布标题统一产品身份，明确社区 fork 与上游的关系。
+- 移除继承的赞助配置与旧展示截图，本地打包不再覆盖发布者身份。
+- 保留上游来源、MIT 许可证和原作者版权声明。
+- 保留代码拆词、离线查词、Windows/Linux Alt+Q、Mac Control+S；原有命令 ID 和扩展 ID 不变。
 
-已知限制：原生翻译浮窗仍可能因鼠标移动关闭；实体 Windows/Linux 快捷键及桌面环境冲突尚未验证。
+来源：liqwang/vscode-word-translation；原项目源自 w88975/code-translate-vscode。此发行由 Kieran Dai 独立维护，不代表上游作者，也不表示上游或 Microsoft 对它的背书。
 
-此商店版使用独立扩展标识，需要主动安装，不会作为原插件的自动更新安装。
+当前 Marketplace 条目已被移除，官方分类为 Impersonation；此包用于整改，尚未恢复商店上架。整改不自动解除移除状态，应申请 Marketplace 复核。
+
+历史 0.1.5 及更早的开发包沿用上游扩展标识，可能覆盖原插件，并非原发布者的官方更新。此独立版本仅使用 chihang03 的发布身份。
+
+已知限制：原生结果浮窗仍可能因鼠标移动关闭；实体 Windows/Linux 快捷键冲突尚未验证；不提供整句翻译。
